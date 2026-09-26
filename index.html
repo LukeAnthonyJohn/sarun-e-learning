@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#111827">
+<title>เรียนภาษาอังกฤษกับลุค | Learn English with Luke</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Noto Sans Thai","Segoe UI",sans-serif;color:#18212f;background:#f4f7fb}
+*{box-sizing:border-box}
+body{margin:0}
+.wrap{max-width:760px;margin:auto;padding:18px}
+.card{background:#fff;border-radius:22px;padding:22px;box-shadow:0 8px 30px rgba(20,40,70,.08);margin:14px 0}
+h1{font-size:1.95rem;margin:.2rem 0}
+.sub,.muted{color:#667085}
+.en{font-size:1.65rem;font-weight:800;margin:12px 0 3px}
+.th{font-size:1.1rem;color:#475467}
+.btn,.choice{width:100%;border:0;border-radius:16px;padding:15px 16px;font-size:1rem;cursor:pointer;margin:7px 0}
+.btn{background:#111827;color:#fff;font-weight:750}
+.btn.secondary{background:#e8eef8;color:#172033}
+.speak{font-size:1.2rem;background:#eaf4ff;color:#0b4a8b}
+.choice{background:#f3f5f8;text-align:left;border:2px solid transparent}
+.choice.correct{background:#e8f7ee;border-color:#55b879}
+.choice.wrong{background:#fdeaea;border-color:#e66}
+.progress{height:12px;background:#e8ecf2;border-radius:999px;overflow:hidden;margin-top:10px}
+.bar{height:100%;background:#222;width:0}
+.feedback{padding:14px;border-radius:14px;margin-top:12px}
+.ok{background:#eaf8ef}.bad{background:#fff0f0}
+.hidden{display:none!important}
+.pill{display:inline-block;background:#eef2f6;border-radius:999px;padding:6px 10px}
+.review{border-top:1px solid #eaecf0;padding:13px 0}
+.topline{display:flex;justify-content:space-between;gap:8px;align-items:center}
+.footer{text-align:center;color:#98a2b3;font-size:.85rem;padding:15px}
+input{width:100%;padding:14px;border:1px solid #d0d5dd;border-radius:14px;font-size:1rem;margin:8px 0 16px}
+.notice{background:#fff8e8;border:1px solid #f1d387;border-radius:14px;padding:12px 14px;font-size:.92rem;margin-top:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<section id="home" class="card">
+  <h1>เรียนภาษาอังกฤษกับลุค</h1>
+  <div class="sub">Learn English with Luke</div>
+  <p>ฝึกฟัง อ่าน และตอบคำถามภาษาอังกฤษ พร้อมคำแปลภาษาไทย</p>
+  <label><b>ชื่อผู้เรียน / Learner name</b></label>
+  <input id="learner" value="Sarun">
+  <p><b>เลือกระดับ / Choose a level</b></p>
+  <button class="btn" onclick="startQuiz(1)">ระดับ 1 — พื้นฐาน / Basics</button>
+  <button class="btn" onclick="startQuiz(2)">ระดับ 2 — ชีวิตประจำวัน / Daily life</button>
+  <button class="btn" onclick="startQuiz(3)">ระดับ 3 — ประโยคยาวขึ้น / Longer sentences</button>
+  <p class="muted">แตะ 🔊 เพื่อฟังภาษาอังกฤษได้กี่ครั้งก็ได้</p>
+  <div class="notice">เวอร์ชันแรกนี้ใช้ฟรีทั้งหมด และไม่ต้องล็อกอิน คะแนนจะถูกบันทึกในอุปกรณ์ของผู้เรียน และสามารถคัดลอกผลเพื่อส่งให้ลุคได้</div>
+</section>
+
+<section id="quiz" class="card hidden">
+  <div class="topline"><span id="counter" class="pill"></span><span id="scoreBox" class="pill"></span></div>
+  <div class="progress"><div id="bar" class="bar"></div></div>
+  <p class="muted">ฟัง อ่าน แล้วเลือกคำตอบที่ถูกต้อง</p>
+  <div id="promptEn" class="en"></div>
+  <div id="promptTh" class="th"></div>
+  <button class="btn speak" onclick="speakCurrent()">🔊 ฟังภาษาอังกฤษ / Listen</button>
+  <div id="choices"></div>
+  <div id="feedback" class="hidden"></div>
+  <button id="nextBtn" class="btn hidden" onclick="nextQuestion()">ข้อต่อไป / Next</button>
+</section>
+
+<section id="done" class="card hidden">
+  <h1>เสร็จแล้ว 🎉</h1>
+  <div id="finalScore" class="en"></div>
+  <div id="encourage" class="th"></div>
+  <button class="btn" onclick="copyResult()">📋 คัดลอกผลเพื่อส่งให้ลุค / Copy result</button>
+  <div id="review"></div>
+  <button class="btn secondary" onclick="location.reload()">ทำอีกครั้ง / Try again</button>
+</section>
+
+<div class="footer">English + ไทย • Tap to hear English</div>
+</div>
+
+<script>
+const levels={
+1:[
+{en:"Hello, how are you?",th:"สวัสดี คุณสบายดีไหม",c:["สวัสดี คุณสบายดีไหม","ขอบคุณมาก","คุณชื่ออะไร","ลาก่อน"],a:0},
+{en:"My name is Sarun.",th:"ฉันชื่อสารัณย์",c:["ฉันมาจากประเทศไทย","ฉันชื่อสารัณย์","ฉันหิว","ฉันเหนื่อย"],a:1},
+{en:"Where are you from?",th:"คุณมาจากที่ไหน",c:["I am from Thailand. — ฉันมาจากประเทศไทย","I am hungry. — ฉันหิว","Good night. — ราตรีสวัสดิ์","Thank you. — ขอบคุณ"],a:0},
+{en:"I am hungry.",th:"ฉันหิว",c:["ฉันเหนื่อย","ฉันหิว","ฉันสบายดี","ฉันกลับบ้าน"],a:1},
+{en:"Do you want some water?",th:"คุณต้องการน้ำไหม",c:["Yes, please. — เอาครับ/ค่ะ","See you tomorrow. — เจอกันพรุ่งนี้","I am from Thailand. — ฉันมาจากประเทศไทย","Good morning. — สวัสดีตอนเช้า"],a:0},
+{en:"Please speak slowly.",th:"กรุณาพูดช้า ๆ",c:["พูดอีกครั้งได้ไหม","กรุณาพูดช้า ๆ","ฉันไม่เข้าใจ","ช่วยฉันได้ไหม"],a:1},
+{en:"I don't understand.",th:"ฉันไม่เข้าใจ",c:["ฉันไม่เข้าใจ","ฉันไม่หิว","ฉันไม่ทำงาน","ฉันไม่กลับบ้าน"],a:0},
+{en:"What time is it?",th:"ตอนนี้กี่โมง",c:["It is ten o'clock. — ตอนนี้สิบโมง","I am twenty-five. — ฉันอายุยี่สิบห้า","It is Monday. — วันนี้วันจันทร์","I am at home. — ฉันอยู่บ้าน"],a:0},
+{en:"I am going to work.",th:"ฉันกำลังจะไปทำงาน",c:["ฉันกำลังจะกลับบ้าน","ฉันกำลังจะไปทำงาน","ฉันกำลังจะกินข้าว","ฉันกำลังจะนอน"],a:1},
+{en:"See you tomorrow.",th:"เจอกันพรุ่งนี้",c:["เจอกันคืนนี้","เจอกันพรุ่งนี้","ลาก่อนตลอดไป","ขอบคุณมาก"],a:1}
+],
+2:[
+{en:"What are you doing today?",th:"วันนี้คุณทำอะไร",c:["พรุ่งนี้คุณทำงานไหม","วันนี้คุณทำอะไร","คุณอยู่ที่ไหน","คุณกินอะไร"],a:1},
+{en:"Would you like some coffee?",th:"คุณอยากดื่มกาแฟไหม",c:["Yes, please. — เอาครับ/ค่ะ","I am at work. — ฉันอยู่ที่ทำงาน","It is Monday. — วันนี้วันจันทร์","Noon. — เที่ยง"],a:0},
+{en:"I will call you later.",th:"ฉันจะโทรหาคุณทีหลัง",c:["ฉันจะโทรหาคุณทีหลัง","ฉันจะกลับบ้านตอนนี้","ฉันโทรหาคุณเมื่อวาน","ฉันจะไปซื้อของ"],a:0},
+{en:"How was your day?",th:"วันนี้ของคุณเป็นอย่างไรบ้าง",c:["It was good, thank you. — ดี ขอบคุณ","I am from Thailand. — ฉันมาจากประเทศไทย","At eight o'clock. — ตอนสองทุ่ม","Two coffees. — กาแฟสองแก้ว"],a:0},
+{en:"I need to go to the shop.",th:"ฉันต้องไปที่ร้าน",c:["ฉันต้องไปที่ร้าน","ฉันต้องไปทำงาน","ฉันต้องกลับบ้าน","ฉันต้องโทรศัพท์"],a:0},
+{en:"Are you working tomorrow?",th:"พรุ่งนี้คุณทำงานไหม",c:["Yes, I am. — ใช่ ฉันทำงาน","I like rice. — ฉันชอบข้าว","It is hot. — อากาศร้อน","At home. — ที่บ้าน"],a:0},
+{en:"Can you help me, please?",th:"ช่วยฉันหน่อยได้ไหม",c:["รอฉันหน่อยได้ไหม","ช่วยฉันหน่อยได้ไหม","โทรหาฉันได้ไหม","ไปกับฉันได้ไหม"],a:1},
+{en:"What would you like to eat?",th:"คุณอยากกินอะไร",c:["I would like rice, please. — ฉันเอาข้าวครับ/ค่ะ","I am tired. — ฉันเหนื่อย","Tomorrow morning. — พรุ่งนี้เช้า","At the station. — ที่สถานี"],a:0},
+{en:"I will be home at eight.",th:"ฉันจะถึงบ้านตอนสองทุ่ม",c:["ฉันเริ่มงานตอนแปดโมง","ฉันจะถึงบ้านตอนสองทุ่ม","ฉันจะโทรตอนสองทุ่ม","ฉันจะกินข้าวตอนสองทุ่ม"],a:1},
+{en:"Did you sleep well?",th:"เมื่อคืนคุณนอนหลับดีไหม",c:["Yes, I did. — ใช่ หลับดี","Yes, I am. — ใช่ ฉันเป็น","Yes, I can. — ใช่ ฉันทำได้","Yes, please. — เอาครับ/ค่ะ"],a:0}
+],
+3:[
+{en:"I was tired after work, so I went straight home.",th:"หลังเลิกงานฉันเหนื่อย เลยกลับบ้านทันที",c:["หลังเลิกงานฉันเหนื่อย เลยกลับบ้านทันที","หลังเลิกงานฉันไปซื้อของ","ฉันไม่ได้ทำงานวันนี้","ฉันจะกลับบ้านพรุ่งนี้"],a:0},
+{en:"What are you planning to do this weekend?",th:"สุดสัปดาห์นี้คุณวางแผนจะทำอะไร",c:["I am going to visit my family. — ฉันจะไปเยี่ยมครอบครัว","I was at work. — ฉันอยู่ที่ทำงาน","It is Tuesday. — วันนี้วันอังคาร","I have two brothers. — ฉันมีพี่น้องผู้ชายสองคน"],a:0},
+{en:"Could you say that again, please?",th:"พูดอีกครั้งได้ไหมครับ/คะ",c:["พูดช้าลงได้ไหม","พูดอีกครั้งได้ไหม","เขียนให้ฉันได้ไหม","รอที่นี่ได้ไหม"],a:1},
+{en:"How long have you lived here?",th:"คุณอยู่ที่นี่มานานแค่ไหนแล้ว",c:["For two years. — สองปีแล้ว","At two o'clock. — ตอนบ่ายสอง","Two people. — สองคน","Two kilometres. — สองกิโลเมตร"],a:0},
+{en:"I haven't decided yet.",th:"ฉันยังไม่ได้ตัดสินใจ",c:["ฉันตัดสินใจแล้ว","ฉันยังไม่ได้ตัดสินใจ","ฉันไม่เข้าใจ","ฉันลืมไปแล้ว"],a:1},
+{en:"Would you mind waiting for a few minutes?",th:"รอสักสองสามนาทีได้ไหม",c:["No problem. — ไม่มีปัญหา","I don't eat meat. — ฉันไม่กินเนื้อ","See you Monday. — เจอกันวันจันทร์","It is raining. — ฝนตก"],a:0},
+{en:"The bus is usually late in the morning.",th:"ปกติรถบัสจะมาสายในตอนเช้า",c:["รถบัสออกตอนเช้า","ปกติรถบัสจะมาสายในตอนเช้า","รถบัสไม่วิ่งตอนเช้า","ฉันนั่งรถบัสทุกวัน"],a:1},
+{en:"Why are you learning English?",th:"ทำไมคุณถึงเรียนภาษาอังกฤษ",c:["Because I want to speak with more people. — เพราะฉันอยากคุยกับผู้คนมากขึ้น","Because it is Monday. — เพราะวันนี้วันจันทร์","At home. — ที่บ้าน","For two hours. — สองชั่วโมง"],a:0},
+{en:"I need to leave early tomorrow morning.",th:"พรุ่งนี้เช้าฉันต้องออกไปแต่เช้า",c:["พรุ่งนี้เช้าฉันต้องออกไปแต่เช้า","วันนี้ฉันกลับบ้านเร็ว","พรุ่งนี้ฉันหยุดงาน","ฉันจะตื่นสายพรุ่งนี้"],a:0},
+{en:"Have you eaten yet?",th:"คุณกินข้าวแล้วหรือยัง",c:["Yes, I have. — กินแล้ว","Yes, I do. — ใช่ ฉันทำ","Yes, I can. — ใช่ ฉันทำได้","Yes, please. — เอาครับ/ค่ะ"],a:0}
+]};
+
+let questions=[],current=0,score=0,answered=false,answers=[],level=1,learner="Sarun",lastResult=null;
+const $=id=>document.getElementById(id);
+
+function startQuiz(l){
+  level=l; learner=$("learner").value.trim()||"Sarun"; questions=levels[l];
+  current=0;score=0;answers=[];
+  $("home").classList.add("hidden");$("done").classList.add("hidden");$("quiz").classList.remove("hidden");
+  render();
+}
+function render(){
+  answered=false; const q=questions[current];
+  $("counter").textContent="ข้อ "+(current+1)+" / "+questions.length;
+  $("scoreBox").textContent="คะแนน "+score;
+  $("bar").style.width=((current/questions.length)*100)+"%";
+  $("promptEn").textContent=q.en;$("promptTh").textContent=q.th;
+  $("choices").innerHTML="";$("feedback").className="hidden";$("nextBtn").classList.add("hidden");
+  q.c.forEach((t,idx)=>{
+    const b=document.createElement("button");b.className="choice";
+    b.textContent=String.fromCharCode(65+idx)+". "+t;
+    b.onclick=()=>answer(idx);$("choices").appendChild(b);
+  });
+}
+function answer(idx){
+  if(answered)return;answered=true;
+  const q=questions[current],ok=idx===q.a;if(ok)score++;
+  [...$("choices").children].forEach((b,n)=>{
+    if(n===q.a)b.classList.add("correct");else if(n===idx)b.classList.add("wrong");b.disabled=true;
+  });
+  answers.push({en:q.en,th:q.th,chosen:q.c[idx],correct:q.c[q.a],ok});
+  const f=$("feedback");f.className="feedback "+(ok?"ok":"bad");
+  f.innerHTML=ok?"<b>ถูกต้อง ✓</b><br>"+q.en+"<br>"+q.th:"<b>ยังไม่ถูก</b><br>คำตอบที่ถูก: "+q.c[q.a]+"<br><span class='muted'>"+q.en+" — "+q.th+"</span>";
+  $("scoreBox").textContent="คะแนน "+score;$("nextBtn").classList.remove("hidden");
+}
+function nextQuestion(){current++;current<questions.length?render():finish();}
+function finish(){
+  $("quiz").classList.add("hidden");$("done").classList.remove("hidden");
+  const pct=Math.round(score/questions.length*100);
+  $("finalScore").textContent=score+" / "+questions.length+" ("+pct+"%)";
+  $("encourage").textContent=pct>=80?"ทำได้ดีมาก! เก่งมาก 👏":pct>=60?"ทำได้ดี! ฝึกอีกนิดนะ 😊":"ไม่เป็นไร ลองอีกครั้งนะ 💪";
+  $("review").innerHTML="<h3>ทบทวนคำตอบ / Review</h3>"+answers.map((a,n)=>"<div class='review'><b>"+(n+1)+". "+a.en+"</b><div>"+a.th+"</div><div>"+(a.ok?"✅":"❌")+" "+a.chosen+"</div>"+(!a.ok?"<div class='muted'>คำตอบที่ถูก: "+a.correct+"</div>":"")+"</div>").join("");
+  lastResult={learner,level,score,total:questions.length,percentage:pct,date:new Date().toISOString(),answers};
+  const old=JSON.parse(localStorage.getItem("sarunResults")||"[]");old.unshift(lastResult);localStorage.setItem("sarunResults",JSON.stringify(old.slice(0,100)));
+}
+function speakCurrent(){
+  if(!("speechSynthesis" in window)){alert("อุปกรณ์นี้ไม่รองรับเสียงพูด");return}
+  speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(questions[current].en);
+  u.lang="en-GB";u.rate=.82;
+  const voices=speechSynthesis.getVoices();
+  const gb=voices.find(v=>v.lang==="en-GB")||voices.find(v=>v.lang&&v.lang.startsWith("en"));
+  if(gb)u.voice=gb;speechSynthesis.speak(u);
+}
+async function copyResult(){
+  if(!lastResult)return;
+  let t="ผลการเรียนภาษาอังกฤษ / English Quiz Result\nชื่อ / Name: "+lastResult.learner+"\nระดับ / Level: "+lastResult.level+"\nคะแนน / Score: "+lastResult.score+"/"+lastResult.total+" ("+lastResult.percentage+"%)\n\n";
+  lastResult.answers.forEach((a,i)=>{t+=(i+1)+". "+a.en+"\n"+a.th+"\n"+(a.ok?"✅ Correct":"❌ Wrong")+"\n"+(!a.ok?"Correct: "+a.correct+"\n":"")+"\n";});
+  try{await navigator.clipboard.writeText(t);alert("คัดลอกผลแล้ว / Result copied");}
+  catch(e){prompt("คัดลอกข้อความนี้ / Copy this result",t);}
+}
+</script>
+</body>
+</html>
