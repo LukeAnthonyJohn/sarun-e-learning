@@ -7,32 +7,22 @@
 <title>เรียนภาษาอังกฤษกับลุค | Learn English with Luke</title>
 <style>
 :root{font-family:system-ui,-apple-system,"Noto Sans Thai","Segoe UI",sans-serif;color:#18212f;background:#f4f7fb}
-*{box-sizing:border-box}
-body{margin:0}
-.wrap{max-width:760px;margin:auto;padding:18px}
+*{box-sizing:border-box} body{margin:0}.wrap{max-width:760px;margin:auto;padding:18px}
 .card{background:#fff;border-radius:22px;padding:22px;box-shadow:0 8px 30px rgba(20,40,70,.08);margin:14px 0}
-h1{font-size:1.95rem;margin:.2rem 0}
-.sub,.muted{color:#667085}
-.en{font-size:1.65rem;font-weight:800;margin:12px 0 3px}
-.th{font-size:1.1rem;color:#475467}
+h1{font-size:1.95rem;margin:.2rem 0}.sub,.muted{color:#667085}.question{font-size:1.24rem;font-weight:760;margin:18px 0 8px}
+.context{background:#f6f8fb;border-radius:14px;padding:12px 14px;margin:10px 0;color:#344054}
 .btn,.choice{width:100%;border:0;border-radius:16px;padding:15px 16px;font-size:1rem;cursor:pointer;margin:7px 0}
-.btn{background:#111827;color:#fff;font-weight:750}
-.btn.secondary{background:#e8eef8;color:#172033}
-.speak{font-size:1.2rem;background:#eaf4ff;color:#0b4a8b}
-.choice{background:#f3f5f8;text-align:left;border:2px solid transparent}
-.choice.correct{background:#e8f7ee;border-color:#55b879}
-.choice.wrong{background:#fdeaea;border-color:#e66}
-.progress{height:12px;background:#e8ecf2;border-radius:999px;overflow:hidden;margin-top:10px}
-.bar{height:100%;background:#222;width:0}
-.feedback{padding:14px;border-radius:14px;margin-top:12px}
-.ok{background:#eaf8ef}.bad{background:#fff0f0}
-.hidden{display:none!important}
-.pill{display:inline-block;background:#eef2f6;border-radius:999px;padding:6px 10px}
-.review{border-top:1px solid #eaecf0;padding:13px 0}
-.topline{display:flex;justify-content:space-between;gap:8px;align-items:center}
+.btn{background:#111827;color:#fff;font-weight:750}.btn.secondary{background:#e8eef8;color:#172033}
+.speak{font-size:1.28rem;background:#eaf4ff;color:#0b4a8b;padding:18px}
+.choice{background:#f3f5f8;text-align:left;border:2px solid transparent;font-size:1.06rem}
+.choice.correct{background:#e8f7ee;border-color:#55b879}.choice.wrong{background:#fdeaea;border-color:#e66}
+.progress{height:12px;background:#e8ecf2;border-radius:999px;overflow:hidden;margin-top:10px}.bar{height:100%;background:#222;width:0}
+.feedback{padding:14px;border-radius:14px;margin-top:12px}.ok{background:#eaf8ef}.bad{background:#fff0f0}
+.hidden{display:none!important}.pill{display:inline-block;background:#eef2f6;border-radius:999px;padding:6px 10px}
+.review{border-top:1px solid #eaecf0;padding:13px 0}.topline{display:flex;justify-content:space-between;gap:8px;align-items:center}
 .footer{text-align:center;color:#98a2b3;font-size:.85rem;padding:15px}
 input{width:100%;padding:14px;border:1px solid #d0d5dd;border-radius:14px;font-size:1rem;margin:8px 0 16px}
-.notice{background:#fff8e8;border:1px solid #f1d387;border-radius:14px;padding:12px 14px;font-size:.92rem;margin-top:12px}
+.tag{display:inline-block;font-size:.82rem;background:#eef2ff;color:#3447a0;padding:5px 9px;border-radius:999px;margin-top:6px}
 </style>
 </head>
 <body>
@@ -40,78 +30,77 @@ input{width:100%;padding:14px;border:1px solid #d0d5dd;border-radius:14px;font-s
 <section id="home" class="card">
   <h1>เรียนภาษาอังกฤษกับลุค</h1>
   <div class="sub">Learn English with Luke</div>
-  <p>ฝึกฟัง อ่าน และตอบคำถามภาษาอังกฤษ พร้อมคำแปลภาษาไทย</p>
-  <label><b>ชื่อผู้เรียน / Learner name</b></label>
+  <p>แบบฝึกหัดนี้ไม่ได้ถามแค่ “แปลว่าอะไร” แต่จะฝึกการฟังและการตอบในสถานการณ์จริง</p>
+  <label><b>ชื่อผู้เรียน</b></label>
   <input id="learner" value="Sarun">
-  <p><b>เลือกระดับ / Choose a level</b></p>
-  <button class="btn" onclick="startQuiz(1)">ระดับ 1 — พื้นฐาน / Basics</button>
-  <button class="btn" onclick="startQuiz(2)">ระดับ 2 — ชีวิตประจำวัน / Daily life</button>
-  <button class="btn" onclick="startQuiz(3)">ระดับ 3 — ประโยคยาวขึ้น / Longer sentences</button>
-  <p class="muted">แตะ 🔊 เพื่อฟังภาษาอังกฤษได้กี่ครั้งก็ได้</p>
-  <div class="notice">เวอร์ชันแรกนี้ใช้ฟรีทั้งหมด และไม่ต้องล็อกอิน คะแนนจะถูกบันทึกในอุปกรณ์ของผู้เรียน และสามารถคัดลอกผลเพื่อส่งให้ลุคได้</div>
+  <p><b>เลือกระดับ</b></p>
+  <button class="btn" onclick="startQuiz(1)">ระดับ 1 — พื้นฐานแต่ต้องคิด</button>
+  <button class="btn" onclick="startQuiz(2)">ระดับ 2 — บทสนทนาในชีวิตประจำวัน</button>
+  <button class="btn" onclick="startQuiz(3)">ระดับ 3 — ฟังความหมายและบริบท</button>
+  <div class="context">แต่ละข้อจะมีคำสั่งภาษาไทย จากนั้นกด 🔊 เพื่อฟังภาษาอังกฤษ แล้วเลือกคำตอบภาษาอังกฤษที่เหมาะสมที่สุด</div>
 </section>
 
 <section id="quiz" class="card hidden">
   <div class="topline"><span id="counter" class="pill"></span><span id="scoreBox" class="pill"></span></div>
   <div class="progress"><div id="bar" class="bar"></div></div>
-  <p class="muted">ฟัง อ่าน แล้วเลือกคำตอบที่ถูกต้อง</p>
-  <div id="promptEn" class="en"></div>
-  <div id="promptTh" class="th"></div>
-  <button class="btn speak" onclick="speakCurrent()">🔊 ฟังภาษาอังกฤษ / Listen</button>
+  <div id="typeTag" class="tag"></div>
+  <div id="instruction" class="question"></div>
+  <div id="context" class="context hidden"></div>
+  <button class="btn speak" onclick="speakCurrent()">🔊 ฟังภาษาอังกฤษ</button>
+  <p class="muted">กดฟังซ้ำได้ตามต้องการ</p>
   <div id="choices"></div>
   <div id="feedback" class="hidden"></div>
-  <button id="nextBtn" class="btn hidden" onclick="nextQuestion()">ข้อต่อไป / Next</button>
+  <button id="nextBtn" class="btn hidden" onclick="nextQuestion()">ข้อต่อไป</button>
 </section>
 
 <section id="done" class="card hidden">
   <h1>เสร็จแล้ว 🎉</h1>
-  <div id="finalScore" class="en"></div>
-  <div id="encourage" class="th"></div>
-  <button class="btn" onclick="copyResult()">📋 คัดลอกผลเพื่อส่งให้ลุค / Copy result</button>
+  <div id="finalScore" style="font-size:1.6rem;font-weight:800"></div>
+  <div id="encourage" class="muted" style="margin:8px 0 18px"></div>
+  <button class="btn" onclick="copyResult()">📋 คัดลอกผลเพื่อส่งให้ลุค</button>
   <div id="review"></div>
-  <button class="btn secondary" onclick="location.reload()">ทำอีกครั้ง / Try again</button>
+  <button class="btn secondary" onclick="location.reload()">ทำอีกครั้ง</button>
 </section>
-
-<div class="footer">English + ไทย • Tap to hear English</div>
+<div class="footer">ฟัง • เข้าใจบริบท • เลือกคำตอบภาษาอังกฤษ</div>
 </div>
 
 <script>
 const levels={
 1:[
-{en:"Hello, how are you?",th:"สวัสดี คุณสบายดีไหม",c:["สวัสดี คุณสบายดีไหม","ขอบคุณมาก","คุณชื่ออะไร","ลาก่อน"],a:0},
-{en:"My name is Sarun.",th:"ฉันชื่อสารัณย์",c:["ฉันมาจากประเทศไทย","ฉันชื่อสารัณย์","ฉันหิว","ฉันเหนื่อย"],a:1},
-{en:"Where are you from?",th:"คุณมาจากที่ไหน",c:["I am from Thailand. — ฉันมาจากประเทศไทย","I am hungry. — ฉันหิว","Good night. — ราตรีสวัสดิ์","Thank you. — ขอบคุณ"],a:0},
-{en:"I am hungry.",th:"ฉันหิว",c:["ฉันเหนื่อย","ฉันหิว","ฉันสบายดี","ฉันกลับบ้าน"],a:1},
-{en:"Do you want some water?",th:"คุณต้องการน้ำไหม",c:["Yes, please. — เอาครับ/ค่ะ","See you tomorrow. — เจอกันพรุ่งนี้","I am from Thailand. — ฉันมาจากประเทศไทย","Good morning. — สวัสดีตอนเช้า"],a:0},
-{en:"Please speak slowly.",th:"กรุณาพูดช้า ๆ",c:["พูดอีกครั้งได้ไหม","กรุณาพูดช้า ๆ","ฉันไม่เข้าใจ","ช่วยฉันได้ไหม"],a:1},
-{en:"I don't understand.",th:"ฉันไม่เข้าใจ",c:["ฉันไม่เข้าใจ","ฉันไม่หิว","ฉันไม่ทำงาน","ฉันไม่กลับบ้าน"],a:0},
-{en:"What time is it?",th:"ตอนนี้กี่โมง",c:["It is ten o'clock. — ตอนนี้สิบโมง","I am twenty-five. — ฉันอายุยี่สิบห้า","It is Monday. — วันนี้วันจันทร์","I am at home. — ฉันอยู่บ้าน"],a:0},
-{en:"I am going to work.",th:"ฉันกำลังจะไปทำงาน",c:["ฉันกำลังจะกลับบ้าน","ฉันกำลังจะไปทำงาน","ฉันกำลังจะกินข้าว","ฉันกำลังจะนอน"],a:1},
-{en:"See you tomorrow.",th:"เจอกันพรุ่งนี้",c:["เจอกันคืนนี้","เจอกันพรุ่งนี้","ลาก่อนตลอดไป","ขอบคุณมาก"],a:1}
+{type:"ตอบคำถาม",instruction:"ฟังคำถาม แล้วเลือกคำตอบที่เป็นธรรมชาติที่สุด",audio:"What time is it?",choices:["It's half past seven.","I'm twenty-four years old.","It's Monday today.","I work at seven."],thai:"คำถามนี้ถามเวลา ดังนั้นคำตอบควรบอกเวลา",a:0},
+{type:"ตอบคำถาม",instruction:"ฟังคำถาม แล้วเลือกคำตอบที่เหมาะสมที่สุด",audio:"Where are you from?",choices:["I'm from Thailand.","I'm at home.","I'm going to work.","I'm fine, thanks."],thai:"Where are you from? ถามว่าคุณมาจากประเทศหรือสถานที่ใด",a:0},
+{type:"สถานการณ์",instruction:"คุณเพิ่งเดินเข้าร้านอาหาร ฟังสิ่งที่พนักงานพูด แล้วเลือกคำตอบที่เหมาะสม",audio:"Would you like something to drink?",choices:["Yes, water please.","I'm from Thailand.","It's very late.","I work tomorrow."],thai:"พนักงานถามว่าต้องการเครื่องดื่มไหม",a:0},
+{type:"ความหมายจากบริบท",instruction:"ฟังประโยค แล้วเลือกสิ่งที่ผู้พูดน่าจะหมายถึง",audio:"I'm really tired. I'm going to bed.",choices:["The speaker wants to sleep.","The speaker wants to eat.","The speaker is going to work.","The speaker wants coffee."],thai:"tired + going to bed สื่อว่าผู้พูดต้องการนอน",a:0},
+{type:"ตอบแบบสุภาพ",instruction:"ฟังคำขอ แล้วเลือกคำตอบที่สุภาพและเหมาะสม",audio:"Can you help me, please?",choices:["Of course. What do you need?","No, I am Thailand.","At eight o'clock.","I don't like coffee."],thai:"เป็นคำขอความช่วยเหลือ จึงควรตอบรับหรือปฏิเสธอย่างสุภาพ",a:0},
+{type:"บทสนทนา",instruction:"ฟังประโยค แล้วเลือกคำตอบที่ทำให้บทสนทนาดำเนินต่อได้ดีที่สุด",audio:"How are you today?",choices:["I'm good, thank you. How are you?","I'm from Nong Bua Lamphu.","At five o'clock.","Yes, I do."],thai:"How are you? ถามความรู้สึกหรือสภาพของคุณ",a:0},
+{type:"เข้าใจเจตนา",instruction:"ฟังประโยค แล้วเลือกสิ่งที่ผู้พูดต้องการให้คุณทำ",audio:"Please speak more slowly.",choices:["Speak at a slower speed.","Speak louder.","Stop speaking.","Write everything down."],thai:"ผู้พูดไม่ได้ขอให้หยุด แต่ขอให้พูดช้าลง",a:0},
+{type:"ตอบคำถาม",instruction:"ฟังคำถาม แล้วเลือกคำตอบที่ตรงที่สุด",audio:"Are you working tomorrow?",choices:["Yes, I start at nine.","Yes, I am hungry.","Tomorrow is Tuesday.","I live near work."],thai:"คำถามถามว่าพรุ่งนี้ทำงานหรือไม่ คำตอบที่ดีควรตอบเรื่องงาน",a:0},
+{type:"บทสนทนา",instruction:"ฟังสิ่งที่อีกฝ่ายพูด แล้วเลือกคำตอบที่เป็นธรรมชาติ",audio:"I don't understand.",choices:["No problem. I'll say it again slowly.","I'm twenty-five.","See you yesterday.","Coffee is good."],thai:"เมื่ออีกฝ่ายไม่เข้าใจ ควรช่วยอธิบายหรือพูดซ้ำ",a:0},
+{type:"สถานการณ์",instruction:"คุณกำลังจะกลับบ้าน ฟังประโยค แล้วเลือกคำตอบที่เหมาะที่สุด",audio:"See you tomorrow.",choices:["See you tomorrow. Have a good night.","I'm from Thailand.","It's ten o'clock.","Yes, I can."],thai:"เป็นการบอกลาและนัดเจอกันวันถัดไป",a:0}
 ],
 2:[
-{en:"What are you doing today?",th:"วันนี้คุณทำอะไร",c:["พรุ่งนี้คุณทำงานไหม","วันนี้คุณทำอะไร","คุณอยู่ที่ไหน","คุณกินอะไร"],a:1},
-{en:"Would you like some coffee?",th:"คุณอยากดื่มกาแฟไหม",c:["Yes, please. — เอาครับ/ค่ะ","I am at work. — ฉันอยู่ที่ทำงาน","It is Monday. — วันนี้วันจันทร์","Noon. — เที่ยง"],a:0},
-{en:"I will call you later.",th:"ฉันจะโทรหาคุณทีหลัง",c:["ฉันจะโทรหาคุณทีหลัง","ฉันจะกลับบ้านตอนนี้","ฉันโทรหาคุณเมื่อวาน","ฉันจะไปซื้อของ"],a:0},
-{en:"How was your day?",th:"วันนี้ของคุณเป็นอย่างไรบ้าง",c:["It was good, thank you. — ดี ขอบคุณ","I am from Thailand. — ฉันมาจากประเทศไทย","At eight o'clock. — ตอนสองทุ่ม","Two coffees. — กาแฟสองแก้ว"],a:0},
-{en:"I need to go to the shop.",th:"ฉันต้องไปที่ร้าน",c:["ฉันต้องไปที่ร้าน","ฉันต้องไปทำงาน","ฉันต้องกลับบ้าน","ฉันต้องโทรศัพท์"],a:0},
-{en:"Are you working tomorrow?",th:"พรุ่งนี้คุณทำงานไหม",c:["Yes, I am. — ใช่ ฉันทำงาน","I like rice. — ฉันชอบข้าว","It is hot. — อากาศร้อน","At home. — ที่บ้าน"],a:0},
-{en:"Can you help me, please?",th:"ช่วยฉันหน่อยได้ไหม",c:["รอฉันหน่อยได้ไหม","ช่วยฉันหน่อยได้ไหม","โทรหาฉันได้ไหม","ไปกับฉันได้ไหม"],a:1},
-{en:"What would you like to eat?",th:"คุณอยากกินอะไร",c:["I would like rice, please. — ฉันเอาข้าวครับ/ค่ะ","I am tired. — ฉันเหนื่อย","Tomorrow morning. — พรุ่งนี้เช้า","At the station. — ที่สถานี"],a:0},
-{en:"I will be home at eight.",th:"ฉันจะถึงบ้านตอนสองทุ่ม",c:["ฉันเริ่มงานตอนแปดโมง","ฉันจะถึงบ้านตอนสองทุ่ม","ฉันจะโทรตอนสองทุ่ม","ฉันจะกินข้าวตอนสองทุ่ม"],a:1},
-{en:"Did you sleep well?",th:"เมื่อคืนคุณนอนหลับดีไหม",c:["Yes, I did. — ใช่ หลับดี","Yes, I am. — ใช่ ฉันเป็น","Yes, I can. — ใช่ ฉันทำได้","Yes, please. — เอาครับ/ค่ะ"],a:0}
+{type:"ตีความเวลา",instruction:"ฟังประโยค แล้วเลือกสิ่งที่น่าจะเกิดขึ้นต่อไป",audio:"I finish work at six, so I'll call you after that.",choices:["The call will probably be after six.","The call will be before six.","The speaker is not working today.","The speaker wants to cancel the call."],thai:"after that อ้างถึงเวลาหลังเลิกงานตอนหกโมง",a:0},
+{type:"ตอบคำถาม",instruction:"ฟังคำถาม แล้วเลือกคำตอบที่ให้ข้อมูลตรงที่สุด",audio:"What are you doing this weekend?",choices:["I'm visiting my family on Sunday.","I went to work yesterday.","It's very hot today.","I usually drink coffee."],thai:"คำถามถามแผนช่วงสุดสัปดาห์",a:0},
+{type:"สถานการณ์",instruction:"คุณอยู่ในร้านอาหาร ฟังคำถาม แล้วเลือกคำตอบที่เหมาะสมที่สุด",audio:"Are you ready to order?",choices:["Yes. I'll have the chicken, please.","Yes, I work tomorrow.","No, I'm from Thailand.","At eight o'clock."],thai:"ready to order ใช้ถามว่าพร้อมสั่งอาหารหรือยัง",a:0},
+{type:"เข้าใจความหมาย",instruction:"ฟังประโยค แล้วเลือกความหมายที่ใกล้ที่สุด",audio:"I'm running a little late.",choices:["The speaker will arrive later than planned.","The speaker is exercising.","The speaker is leaving early.","The speaker has cancelled everything."],thai:"running late เป็นสำนวน หมายถึงกำลังมาสาย",a:0},
+{type:"เลือกคำตอบ",instruction:"ฟังคำถาม แล้วเลือกคำตอบที่เหมาะกับคำว่า 'yet' มากที่สุด",audio:"Have you eaten yet?",choices:["Yes, I have.","Yes, I do.","Yes, I am.","Yes, I can."],thai:"Have you…? ใช้ present perfect จึงตอบ Yes, I have.",a:0},
+{type:"การตอบอย่างเป็นธรรมชาติ",instruction:"ฟังประโยค แล้วเลือกคำตอบที่ฟังเป็นธรรมชาติที่สุด",audio:"I'm sorry I'm late.",choices:["That's okay. Don't worry.","Yes, I am late.","I like your car.","Tomorrow morning."],thai:"อีกฝ่ายขอโทษเรื่องมาสาย จึงควรตอบรับคำขอโทษ",a:0},
+{type:"เข้าใจแผน",instruction:"ฟังประโยค แล้วเลือกข้อสรุปที่ถูกต้อง",audio:"I'll go to the shop before I come home.",choices:["The shop comes before going home.","The speaker is already home.","The speaker will skip the shop.","The speaker went shopping yesterday."],thai:"before บอกลำดับว่าไปร้านก่อนกลับบ้าน",a:0},
+{type:"เลือกประโยคตอบกลับ",instruction:"เพื่อนถามถึงวันทำงานของคุณ ฟังแล้วเลือกคำตอบที่เหมาะสม",audio:"How was work today?",choices:["Busy, but it was okay.","At nine o'clock.","Yes, I work.","I am at work tomorrow."],thai:"How was work? ถามว่างานวันนี้เป็นอย่างไร",a:0},
+{type:"เข้าใจคำขอ",instruction:"ฟังประโยค แล้วเลือกสิ่งที่ควรทำ",audio:"Could you wait here for a minute?",choices:["Stay here briefly.","Leave immediately.","Call tomorrow.","Speak more loudly."],thai:"wait here for a minute คือขอให้อยู่รอสักครู่",a:0},
+{type:"บทสนทนา",instruction:"ฟังคำถาม แล้วเลือกคำตอบที่เหมาะสมและครบกว่า",audio:"What would you like to drink?",choices:["I'd like an iced coffee, please.","Yes, I like drinks.","I'm drinking yesterday.","The café is over there."],thai:"คำถามถามว่าต้องการดื่มอะไร ควรตอบชื่อเครื่องดื่ม",a:0}
 ],
 3:[
-{en:"I was tired after work, so I went straight home.",th:"หลังเลิกงานฉันเหนื่อย เลยกลับบ้านทันที",c:["หลังเลิกงานฉันเหนื่อย เลยกลับบ้านทันที","หลังเลิกงานฉันไปซื้อของ","ฉันไม่ได้ทำงานวันนี้","ฉันจะกลับบ้านพรุ่งนี้"],a:0},
-{en:"What are you planning to do this weekend?",th:"สุดสัปดาห์นี้คุณวางแผนจะทำอะไร",c:["I am going to visit my family. — ฉันจะไปเยี่ยมครอบครัว","I was at work. — ฉันอยู่ที่ทำงาน","It is Tuesday. — วันนี้วันอังคาร","I have two brothers. — ฉันมีพี่น้องผู้ชายสองคน"],a:0},
-{en:"Could you say that again, please?",th:"พูดอีกครั้งได้ไหมครับ/คะ",c:["พูดช้าลงได้ไหม","พูดอีกครั้งได้ไหม","เขียนให้ฉันได้ไหม","รอที่นี่ได้ไหม"],a:1},
-{en:"How long have you lived here?",th:"คุณอยู่ที่นี่มานานแค่ไหนแล้ว",c:["For two years. — สองปีแล้ว","At two o'clock. — ตอนบ่ายสอง","Two people. — สองคน","Two kilometres. — สองกิโลเมตร"],a:0},
-{en:"I haven't decided yet.",th:"ฉันยังไม่ได้ตัดสินใจ",c:["ฉันตัดสินใจแล้ว","ฉันยังไม่ได้ตัดสินใจ","ฉันไม่เข้าใจ","ฉันลืมไปแล้ว"],a:1},
-{en:"Would you mind waiting for a few minutes?",th:"รอสักสองสามนาทีได้ไหม",c:["No problem. — ไม่มีปัญหา","I don't eat meat. — ฉันไม่กินเนื้อ","See you Monday. — เจอกันวันจันทร์","It is raining. — ฝนตก"],a:0},
-{en:"The bus is usually late in the morning.",th:"ปกติรถบัสจะมาสายในตอนเช้า",c:["รถบัสออกตอนเช้า","ปกติรถบัสจะมาสายในตอนเช้า","รถบัสไม่วิ่งตอนเช้า","ฉันนั่งรถบัสทุกวัน"],a:1},
-{en:"Why are you learning English?",th:"ทำไมคุณถึงเรียนภาษาอังกฤษ",c:["Because I want to speak with more people. — เพราะฉันอยากคุยกับผู้คนมากขึ้น","Because it is Monday. — เพราะวันนี้วันจันทร์","At home. — ที่บ้าน","For two hours. — สองชั่วโมง"],a:0},
-{en:"I need to leave early tomorrow morning.",th:"พรุ่งนี้เช้าฉันต้องออกไปแต่เช้า",c:["พรุ่งนี้เช้าฉันต้องออกไปแต่เช้า","วันนี้ฉันกลับบ้านเร็ว","พรุ่งนี้ฉันหยุดงาน","ฉันจะตื่นสายพรุ่งนี้"],a:0},
-{en:"Have you eaten yet?",th:"คุณกินข้าวแล้วหรือยัง",c:["Yes, I have. — กินแล้ว","Yes, I do. — ใช่ ฉันทำ","Yes, I can. — ใช่ ฉันทำได้","Yes, please. — เอาครับ/ค่ะ"],a:0}
+{type:"อนุมานจากบริบท",instruction:"ฟังประโยค แล้วเลือกข้อสรุปที่สมเหตุสมผลที่สุด",audio:"I was going to cook, but I'm too tired, so let's order something.",choices:["The speaker prefers to order food tonight.","The speaker has already cooked dinner.","The speaker is not hungry.","The speaker wants to go to work."],thai:"ผู้พูดตั้งใจทำอาหาร แต่เปลี่ยนแผนเพราะเหนื่อย",a:0},
+{type:"ความหมายของสำนวน",instruction:"ฟังประโยค แล้วเลือกความหมายที่เหมาะสมที่สุด",audio:"I'll let you know when I find out.",choices:["The speaker will tell you later when they have the information.","The speaker already knows the answer.","The speaker does not want to tell you.","The speaker is asking you for the answer."],thai:"let you know = บอกให้คุณรู้ เมื่อมีข้อมูลแล้ว",a:0},
+{type:"ตีความเจตนา",instruction:"ฟังคำถาม แล้วเลือกคำตอบที่ตอบเจตนาของผู้พูดจริง ๆ",audio:"Do you mind if I open the window?",choices:["No, that's fine.","Yes, I open it every day.","The window is expensive.","I opened it yesterday."],thai:"Do you mind if…? เป็นการขออนุญาตแบบสุภาพ",a:0},
+{type:"ความต่างของเวลา",instruction:"ฟังประโยค แล้วเลือกสิ่งที่ถูกต้องเกี่ยวกับเวลา",audio:"I've lived here for two years.",choices:["The speaker started living here two years ago and still lives here.","The speaker left two years ago.","The speaker will move here in two years.","The speaker lived here for only two days."],thai:"have lived + for บอกช่วงเวลาที่เริ่มในอดีตและต่อเนื่องถึงปัจจุบัน",a:0},
+{type:"ตอบอย่างเป็นธรรมชาติ",instruction:"ฟังสิ่งที่อีกฝ่ายพูด แล้วเลือกคำตอบที่เหมาะสมที่สุด",audio:"I haven't decided yet.",choices:["No rush. Let me know when you decide.","Yes, you decided yesterday.","I don't like decisions.","At half past six."],thai:"อีกฝ่ายยังไม่ตัดสินใจ จึงตอบแบบให้เวลาได้",a:0},
+{type:"อนุมานสถานการณ์",instruction:"ฟังประโยค แล้วเลือกสิ่งที่น่าจะเป็นปัญหา",audio:"The bus is usually late in the morning, so I leave home early.",choices:["The speaker allows extra time because the bus may be late.","The speaker dislikes mornings.","The speaker walks to work every day.","The bus never runs in the morning."],thai:"ผู้พูดออกจากบ้านเร็วเพราะเผื่อเวลารถบัสมาสาย",a:0},
+{type:"เจตนาของผู้พูด",instruction:"ฟังประโยค แล้วเลือกว่าผู้พูดกำลังทำอะไร",audio:"Could you say that again, please?",choices:["Asking someone to repeat something.","Asking someone to leave.","Giving someone directions.","Ending the conversation."],thai:"say that again คือขอให้พูดซ้ำ",a:0},
+{type:"ตอบคำถามแบบมีเหตุผล",instruction:"ฟังคำถาม แล้วเลือกคำตอบที่อธิบายเหตุผลได้ดีที่สุด",audio:"Why are you learning English?",choices:["Because I want to speak with more people.","For about two years.","At home in the evening.","Yes, I am."],thai:"Why ถามเหตุผล จึงควรตอบด้วย because",a:0},
+{type:"เข้าใจลำดับเหตุการณ์",instruction:"ฟังประโยค แล้วเลือกสิ่งที่ต้องเกิดก่อน",audio:"I need to leave early tomorrow morning because my flight is at nine.",choices:["The speaker must leave before nine.","The speaker will leave after nine.","The flight is tonight.","The speaker does not need to travel."],thai:"เที่ยวบินเก้าโมง จึงต้องออกเดินทางก่อนเวลาเที่ยวบิน",a:0},
+{type:"ตีความคำแนะนำ",instruction:"ฟังประโยค แล้วเลือกสิ่งที่ผู้พูดแนะนำ",audio:"If you're not feeling well, you should get some rest.",choices:["Rest if you feel unwell.","Go to work even if you feel ill.","Eat more because you are hungry.","Call someone because you are late."],thai:"should ใช้ให้คำแนะนำ และคำแนะนำในประโยคคือให้พักผ่อน",a:0}
 ]};
 
 let questions=[],current=0,score=0,answered=false,answers=[],level=1,learner="Sarun",lastResult=null;
@@ -120,31 +109,36 @@ const $=id=>document.getElementById(id);
 function startQuiz(l){
   level=l; learner=$("learner").value.trim()||"Sarun"; questions=levels[l];
   current=0;score=0;answers=[];
-  $("home").classList.add("hidden");$("done").classList.add("hidden");$("quiz").classList.remove("hidden");
-  render();
+  $("home").classList.add("hidden");$("done").classList.add("hidden");$("quiz").classList.remove("hidden");render();
 }
 function render(){
   answered=false; const q=questions[current];
   $("counter").textContent="ข้อ "+(current+1)+" / "+questions.length;
   $("scoreBox").textContent="คะแนน "+score;
   $("bar").style.width=((current/questions.length)*100)+"%";
-  $("promptEn").textContent=q.en;$("promptTh").textContent=q.th;
+  $("typeTag").textContent=q.type;
+  $("instruction").textContent=q.instruction;
+  $("context").classList.add("hidden");
   $("choices").innerHTML="";$("feedback").className="hidden";$("nextBtn").classList.add("hidden");
-  q.c.forEach((t,idx)=>{
-    const b=document.createElement("button");b.className="choice";
+  q.choices.forEach((t,idx)=>{
+    const b=document.createElement("button"); b.className="choice";
     b.textContent=String.fromCharCode(65+idx)+". "+t;
-    b.onclick=()=>answer(idx);$("choices").appendChild(b);
+    b.onclick=()=>answer(idx); $("choices").appendChild(b);
   });
+  setTimeout(speakCurrent,350);
 }
 function answer(idx){
-  if(answered)return;answered=true;
+  if(answered)return; answered=true;
   const q=questions[current],ok=idx===q.a;if(ok)score++;
   [...$("choices").children].forEach((b,n)=>{
-    if(n===q.a)b.classList.add("correct");else if(n===idx)b.classList.add("wrong");b.disabled=true;
+    if(n===q.a)b.classList.add("correct"); else if(n===idx)b.classList.add("wrong"); b.disabled=true;
   });
-  answers.push({en:q.en,th:q.th,chosen:q.c[idx],correct:q.c[q.a],ok});
-  const f=$("feedback");f.className="feedback "+(ok?"ok":"bad");
-  f.innerHTML=ok?"<b>ถูกต้อง ✓</b><br>"+q.en+"<br>"+q.th:"<b>ยังไม่ถูก</b><br>คำตอบที่ถูก: "+q.c[q.a]+"<br><span class='muted'>"+q.en+" — "+q.th+"</span>";
+  answers.push({audio:q.audio,chosen:q.choices[idx],correct:q.choices[q.a],ok,type:q.type,thai:q.thai});
+  const f=$("feedback"); f.className="feedback "+(ok?"ok":"bad");
+  f.innerHTML=(ok?"<b>ถูกต้อง ✓</b>":"<b>ยังไม่ถูก</b>")+
+    "<br><br><b>ประโยคที่ได้ยิน:</b><br>"+q.audio+
+    "<br><br><b>อธิบาย:</b><br>"+q.thai+
+    (!ok?"<br><br><b>คำตอบที่เหมาะสม:</b><br>"+q.choices[q.a]:"");
   $("scoreBox").textContent="คะแนน "+score;$("nextBtn").classList.remove("hidden");
 }
 function nextQuestion(){current++;current<questions.length?render():finish();}
@@ -152,25 +146,25 @@ function finish(){
   $("quiz").classList.add("hidden");$("done").classList.remove("hidden");
   const pct=Math.round(score/questions.length*100);
   $("finalScore").textContent=score+" / "+questions.length+" ("+pct+"%)";
-  $("encourage").textContent=pct>=80?"ทำได้ดีมาก! เก่งมาก 👏":pct>=60?"ทำได้ดี! ฝึกอีกนิดนะ 😊":"ไม่เป็นไร ลองอีกครั้งนะ 💪";
-  $("review").innerHTML="<h3>ทบทวนคำตอบ / Review</h3>"+answers.map((a,n)=>"<div class='review'><b>"+(n+1)+". "+a.en+"</b><div>"+a.th+"</div><div>"+(a.ok?"✅":"❌")+" "+a.chosen+"</div>"+(!a.ok?"<div class='muted'>คำตอบที่ถูก: "+a.correct+"</div>":"")+"</div>").join("");
+  $("encourage").textContent=pct>=85?"ยอดเยี่ยมมาก 👏":pct>=70?"ทำได้ดีมาก ลองฝึกข้อที่พลาดอีกครั้ง 😊":pct>=50?"กำลังดีขึ้น ลองฟังซ้ำและสังเกตบริบท 💪":"ไม่เป็นไร ระดับนี้ตั้งใจให้ต้องคิด ลองอีกครั้งนะ";
+  $("review").innerHTML="<h3>ทบทวนคำตอบ</h3>"+answers.map((a,n)=>"<div class='review'><b>"+(n+1)+". "+a.audio+"</b><div class='muted'>"+a.type+"</div><div>"+(a.ok?"✅":"❌")+" "+a.chosen+"</div>"+(!a.ok?"<div><b>คำตอบที่เหมาะสม:</b> "+a.correct+"</div>":"")+"<div class='muted'>"+a.thai+"</div></div>").join("");
   lastResult={learner,level,score,total:questions.length,percentage:pct,date:new Date().toISOString(),answers};
   const old=JSON.parse(localStorage.getItem("sarunResults")||"[]");old.unshift(lastResult);localStorage.setItem("sarunResults",JSON.stringify(old.slice(0,100)));
 }
 function speakCurrent(){
-  if(!("speechSynthesis" in window)){alert("อุปกรณ์นี้ไม่รองรับเสียงพูด");return}
-  speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(questions[current].en);
-  u.lang="en-GB";u.rate=.82;
+  if(!questions[current]||!("speechSynthesis" in window))return;
+  speechSynthesis.cancel(); const u=new SpeechSynthesisUtterance(questions[current].audio);
+  u.lang="en-GB"; u.rate=.80;
   const voices=speechSynthesis.getVoices();
   const gb=voices.find(v=>v.lang==="en-GB")||voices.find(v=>v.lang&&v.lang.startsWith("en"));
-  if(gb)u.voice=gb;speechSynthesis.speak(u);
+  if(gb)u.voice=gb; speechSynthesis.speak(u);
 }
 async function copyResult(){
   if(!lastResult)return;
-  let t="ผลการเรียนภาษาอังกฤษ / English Quiz Result\nชื่อ / Name: "+lastResult.learner+"\nระดับ / Level: "+lastResult.level+"\nคะแนน / Score: "+lastResult.score+"/"+lastResult.total+" ("+lastResult.percentage+"%)\n\n";
-  lastResult.answers.forEach((a,i)=>{t+=(i+1)+". "+a.en+"\n"+a.th+"\n"+(a.ok?"✅ Correct":"❌ Wrong")+"\n"+(!a.ok?"Correct: "+a.correct+"\n":"")+"\n";});
-  try{await navigator.clipboard.writeText(t);alert("คัดลอกผลแล้ว / Result copied");}
-  catch(e){prompt("คัดลอกข้อความนี้ / Copy this result",t);}
+  let t="ผลการเรียนภาษาอังกฤษ\nชื่อ: "+lastResult.learner+"\nระดับ: "+lastResult.level+"\nคะแนน: "+lastResult.score+"/"+lastResult.total+" ("+lastResult.percentage+"%)\n\n";
+  lastResult.answers.forEach((a,i)=>{t+=(i+1)+". ["+a.type+"] "+a.audio+"\n"+(a.ok?"✅ Correct":"❌ Wrong")+"\nChosen: "+a.chosen+"\n"+(!a.ok?"Correct: "+a.correct+"\n":"")+"\n";});
+  try{await navigator.clipboard.writeText(t);alert("คัดลอกผลแล้ว");}
+  catch(e){prompt("คัดลอกข้อความนี้",t);}
 }
 </script>
 </body>
