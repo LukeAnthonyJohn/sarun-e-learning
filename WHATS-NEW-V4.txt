@@ -1,0 +1,18 @@
+SARUN DISCOVERY LAB — VERSION 4
+
+You are in the NEW version if the first page says:
+“SARUN DISCOVERY LAB · VERSION 4”
+
+Changes in this package:
+- 52 questions total.
+- Expanded final Personality & Learning section.
+- More slider questions and multiple-choice personality questions.
+- More illustrated/image-card questions instead of emoji-only visuals.
+- Image questions include Songkran, Welsh symbols, organs, object classification and shape patterns.
+- Full Answer Review appears after completion.
+- Review shows every question and the answer Sarun selected or typed.
+- Scored questions show whether the response was correct and the correct answer when needed.
+- “Copy all answers” button added.
+- Files renamed quiz-v4.js and quiz-v4.css to prevent old browser/file cache confusion.
+
+OPEN: index.html
